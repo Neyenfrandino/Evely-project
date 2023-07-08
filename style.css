@@ -1,0 +1,40 @@
+.tablaComprimidos tr td {
+    border: solid black;
+    border-radius: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.tablaComprimidos .tdVacio{
+    border: none
+}
+
+.tablaComprimidos{
+    background-color: rgba(234, 10, 10, 0.5);
+}
+
+.tablaComprimidos{
+    border: solid black;
+    padding: 2%;
+}
+
+.inicioComprimidos{
+    background-color: rgba(255, 204, 0, 0.5);
+}
+
+.segundaFilaComprimidos{
+    background-color: rgba(245, 194, 194, 0.5);
+}
+
+.comprimidosDel8Al24{
+    background-color: rgba(209, 236, 85, 0.5)
+}
+
+.comprimidos25-26{
+    background-color: rgba(255, 38, 0, 0.5);
+}
+
+.ultimosComprimidos{
+    background-color: white;
+}
