@@ -1,3 +1,24 @@
+body{
+    background-image: url(img/dos-mujeres-compartiendo-abrazos-de-amigos-caricaturas-aisladas-en-fondo-blanco-caricaturistas-personas-con-antecedentes-blancos-170686366.webp);
+    background-size: cover;
+    
+}
+
+.tituloPrincipal{
+    font-family: cursive;
+    text-align: center;
+    text-shadow: 3px 5px  5px rgb(234, 88, 88);
+
+}
+
+.descripcion{
+    text-align: center;
+    font-family: cursive;
+    font-weight: bold;
+    color:black ;
+    
+}
+
 .tablaComprimidos tr td {
     border: solid black;
     border-radius: 50px;
@@ -6,17 +27,19 @@
     font-size: 20px;
 }
 
+
+
 .tablaComprimidos .tdVacio{
     border: none
 }
 
 .tablaComprimidos{
-    background-color: rgba(234, 10, 10, 0.5);
-}
-
-.tablaComprimidos{
     border: solid black;
-    padding: 2%;
+    border-radius: 10px;
+    padding: 1.2% 5%;
+    box-shadow: 0 0.1rem 0.6rem rgba(255, 0, 0, 0.8);
+    background-color: rgba(234, 10, 10, 0.5);
+    margin: 7% 0% 3% 10%;
 }
 
 .inicioComprimidos{
@@ -37,4 +60,60 @@
 
 .ultimosComprimidos{
     background-color: white;
+}
+
+.filtrarNombre {
+    display: inline-block;
+    margin-top: 5%;
+    margin-left: 10%;
+    border: solid black;
+    border-radius: 20px;
+    text-align: center;
+    width: 30%;
+    height: 160px;
+    padding: 3.5% ;
+    background-color:rgba(0, 0, 0, 0.5); ;
+} 
+
+.cajaInput{
+    margin: 5%;
+    background-color: rgba(234, 10, 10, 0.8); 
+    border: none;
+    width: 70%;
+    height: 20%;
+    border-radius: 15%;
+    text-align: center;
+    font-weight: bold;
+    
+}
+
+.btnFiltarNombre{
+    background-color: rgba(0, 0 , 0,  0.0) ;
+    border: none;
+    color: wheat;
+    font-weight: bolder;
+    font-family: cursive;
+    position: absolute;
+    left: 33%;
+    top: 59.5%;
+    cursor: pointer;
+}
+
+.btnFiltarNombre:hover{
+    color: black;
+}
+
+.labelText{
+    font-family: cursive;
+    font-weight: 300;
+    cursor: pointer;
+    padding: 20px;
+    margin: 5%;
+    color: wheat;
+    text-align: center;
+}
+
+.conteiner {
+    display: flex;
+    align-items: center;
 }
