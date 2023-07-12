@@ -3,17 +3,21 @@
 <head>
     <title>Calendario de Nosotras</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 </head>
 <body>
     <h1 class="tituloPrincipal">Calendario para Nosotras...</h1>
-    <p class="descripcion">Esta es una aplicacion que nos permite recordar segun la "Fecha que comprimido debemos tomar"...  </p>
+    <p class="descripcion">Esta es una aplicacion que nos permite recordar segun la Fecha, "Que comprimido debemos tomar"...  </p>
     
 <div class="conteiner">
     
-    <div class="filtrarNombre">
-        <label for="cajaInput" class="labelText" id="labelText">Dime Tu nombre por favor y selecciona la fecha de inicio del tratamiento en el Calendario y te ayudare...</label>
-        <input type="date" id="cajaInput" class="cajaInput">
+    <div class="filtrarNombre" id="filtrarNombre">
+        <label for="cajaInput" class="labelText" id="labelText">Dime tu nombre por favor, y selecciona la fecha de inicio del tratamiento en el Calendario, y te ayudare...</label>
+        <input type="text" id="nombreInput" class="nombreInput" placeholder="Ingresa tu nombre">
         <button class="btnFiltarNombre" id="btnFiltarNombre">Buscar...</button>
+        <input type="date" id="cajaInput" class="cajaInput">
+        
     </div>
 
     <div id="calendarioContainer"></div>
@@ -86,7 +90,11 @@
         </tr>
     </table>
 </div>
+
+
    
     <script src="misScrips.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.js"></script>
+
 </body>
 </html>
