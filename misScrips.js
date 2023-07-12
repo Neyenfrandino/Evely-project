@@ -11,20 +11,24 @@ function buscadorDeFecha(){
     let valorInput = elementInputText.value
     let mensajeMostrarUsuario = '"'+ valorInput +'"' + ' usted unicio el tratamiento el dia ';
 
-    if(!valorUsuario){
-        console.log('ingreso fecha correctamente')
-        return;
-    }
+    if(valorUsuario >= fecha){
+        let calendarioContainer = buscarPorId('calendarioContainer');
+        calendarioContainer.innerHTML= '';
 
-    let calendarioContainer = buscarPorId('calendarioContainer');
-    calendarioContainer.innerHTML= '';
-
-    let fechaFormateada = fecha.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
-    let fechaTitulo = document.createElement('h2');
-    fechaTitulo.textContent = mensajeMostrarUsuario + fechaFormateada + ' debe tomar el comprimido X';
-    fechaTitulo.classList.add('mensajeUsuario');
-    calendarioContainer.appendChild(fechaTitulo);
-
+        let fechaFormateada = fecha.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+        let fechaTitulo = document.createElement('h2');
+        fechaTitulo.textContent = mensajeMostrarUsuario + fechaFormateada + ' debe tomar el comprimido X';
+        fechaTitulo.classList.add('mensajeUsuario');
+        calendarioContainer.appendChild(fechaTitulo);
+ } else{
+        let fechaTitulo = document.createElement('h2');
+        fechaTitulo.textContent = valorInput + ' La fecha ingresada no es correcta'
+        fechaTitulo.classList.add('mensajeUsuario');
+        calendarioContainer.appendChild(fechaTitulo);
+        let tablaComprimidos = buscarPorId('tablaComprimidos');
+        tablaComprimidos.remove();
+    
+ }
 }
 
 function btnEvent() {
