@@ -1,15 +1,13 @@
 body{
-    background-image: url(img/dos-mujeres-compartiendo-abrazos-de-amigos-caricaturas-aisladas-en-fondo-blanco-caricaturistas-personas-con-antecedentes-blancos-170686366.webp);
+    background-image: url(img/feliz-chica-rubia-tomar-una-pildora-de-vitaminas-y-mirando-al-lado-sentados-en-un-sofa-en-el-salon-en-casa-m0gayn.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    
 }
 
 .tituloPrincipal{
     font-family: cursive;
     text-align: center;
     text-shadow: 3px 5px  5px rgb(234, 88, 88);
-
 }
 
 .descripcion{
@@ -17,6 +15,7 @@ body{
     font-family: cursive;
     font-weight: bold;
     color:black ;
+    text-shadow: 3px 0px  5px hsl(0, 0%, 100%);
     
 }
 
@@ -81,7 +80,6 @@ body{
     box-shadow: 3px 5px  5px rgb(234, 88, 88);;
 }
 
-
 .cajaInput{
     margin: 1%;
     background-color: rgba(234, 10, 10, 0.8); 
@@ -91,6 +89,8 @@ body{
     border-radius: 15%;
     text-align: center;
     font-weight: bold;
+    padding-right: 4%;
+    cursor: pointer;
 }
 
 .nombreInput{
@@ -112,7 +112,7 @@ body{
     font-family: cursive;
     position: absolute;
     left: 60%;
-    top: 58%;
+    top: 61.5%;
     cursor: pointer;
 }
 
@@ -128,8 +128,7 @@ body{
     margin: 5%;
     color: white;
     text-align: center;
-    text-shadow: 3px 5px  5px rgb(0, 0, 0);
-   
+    text-shadow: 3px 5px  5px rgb(0, 0, 0); 
 }
 
 .conteiner {
@@ -151,7 +150,7 @@ body{
     background-color: rgba(0, 0, 0, 0.5); 
     font-size: 20px ;
     box-shadow: 0 0.1rem 0.6rem rgba(0, 0, 0, 0.8);
-    color: rgb(249, 125, 125);
+    color: wheat;
     text-shadow: 3px 5px  5px rgb(0, 0, 0); ;
 }
 
@@ -180,20 +179,29 @@ body{
     text-shadow: 3px 5px  5px rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.8); 
     color: rgb(249, 125, 125);
- }
+}
 
  .btnRecargar:hover{
     box-shadow: 0 0.1rem 0.6rem rgba(255, 252, 252, 0.8);
     cursor: pointer;
     color:rgba(255, 252, 252, 0.8) ;
- }
+}
 
 .tomado {
     background-color: #c6ebc9;
-  }
+}
 
-  .resaltado-siguiente{
-        background-color: yellow
+.resaltado-siguiente{
+    background-color: yellow
+}
 
-  }
-  
+.dark{
+    background-color: black;
+}
+
+.span{
+    color:rgba(234, 10, 10, 1); 
+    font-weight: bolder;
+    text-shadow: 3px 0px  5px hsl(0, 0%, 100%);
+}
+

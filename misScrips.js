@@ -21,7 +21,7 @@ function buscadorDeFecha(){
         //Aqui validamos que la fecha del inicio del tratamiento no sea una fecha del futuro... 
         let fechaFormateada = fecha.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
         let fechaTitulo = document.createElement('h2');
-        fechaTitulo.textContent = mensajeMostrarUsuario + fechaFormateada + ' debe tomar el comprimido X';
+        fechaTitulo.textContent = mensajeMostrarUsuario + fechaFormateada + ' debe tomar el comprimido que indica la tableta en amarillo';
         fechaTitulo.classList.add('mensajeUsuario');
         calendarioContainer.appendChild(fechaTitulo);
 
@@ -57,12 +57,12 @@ function btnEvent() {
     let btnElemento = buscarPorId('btnFiltarNombre');
     let elementInput = buscarPorId('cajaInput');
     const nombreInput = document.getElementById('nombreInput');
-  
+    
     btnElemento.addEventListener('click', function() {
+      
       if (nombreInput.value.trim() !== '') {
         if (elementInput.value.trim() !== '') {
 
-          flatpickr(elementInput);
           buscadorDeFecha();
   
           if (nombreInput.value.trim() && elementInput.value.trim()) {
@@ -74,10 +74,11 @@ function btnEvent() {
         }
       } else {
         alert('Por favor, ingresa tu nombre primero.');
-      }
+      } 
       
-    });
-  }
+      
+  });
+}
   
   function verificacionCampos() {
 
@@ -96,11 +97,9 @@ function btnEvent() {
     if(miArray != null){
         let miTabla = buscarPorId('tablaComprimidos');
         miTabla.style.display = 'inline-block'
-      }
-      
-  }     
-    
-      
+    }  
+}     
+     
   function validacionFechaATomarComprimido(elementoinputUsuario) {
     let fechaValorUsuario = elementoinputUsuario;
     let fechaFormateada = new Date(fechaValorUsuario);
@@ -118,13 +117,12 @@ function btnEvent() {
       let indice = indicesConNumero[indiceActual];
       let celda = document.getElementsByTagName('td')[indice];
   
-      if (i === repeticiones - 1) {
-        celda.classList.add('resaltado');
+      if (i === repeticiones) {
       } else {
         celda.classList.add('tomado');
-      }
+      } 
   
-      if (i === repeticiones - 2) {
+      if (i === repeticiones - 1) {
         let siguienteIndice = indicesConNumero[indiceActual + 1];
         let siguienteCelda = document.getElementsByTagName('td')[siguienteIndice];
         siguienteCelda.classList.add('resaltado-siguiente');
@@ -134,11 +132,15 @@ function btnEvent() {
       if (indiceActual >= indicesConNumero.length) {
         indiceActual = 0;
       }
+      for (let i = repeticiones % 28; i < 28; i++) {
+        let indice = indicesConNumero[i];
+        let celda = document.getElementsByTagName('td')[indice];
+        celda.classList.remove('tomado');
+        celda.classList.add('gris');
+      }
     }
   }
   
-  
-    
 function obtenerIndicesConNumero() {
       let tablaComprimidos = document.getElementById('tablaComprimidos');
       let celdas = tablaComprimidos.getElementsByTagName('td');
@@ -159,47 +161,7 @@ function obtenerIndicesConNumero() {
         return indices;
       }
       
-btnEvent()
-
-
-
-/* 
-function validacionFechaATomarComprimido(elementoinputUsuario) {
-  let fechaValorUsuario = elementoinputUsuario;
-  let fechaFormateada = new Date(fechaValorUsuario);
-  let fechaActual = new Date();
-
-  let diferenciaTiempo = fechaFormateada.getTime() - fechaActual.getTime();
-  let diferenciaDias = Math.ceil(diferenciaTiempo / (1000 * 60 * 60 * 24));
-  let diferenciaDiasValorAbsoluto = Math.abs(diferenciaDias);
-
-  let indicesConNumero = obtenerIndicesConNumero();
-
-  let repeticiones = diferenciaDiasValorAbsoluto;
-  let indiceActual = 0;
-
-  for (let i = 0; i < repeticiones; i++) {
-    let indice = indicesConNumero[indiceActual];
-    let celda = document.getElementsByTagName('td')[indice];
-
-    if (i === repeticiones - 1) {
-      celda.classList.add('resaltado');
-      if (indiceActual > 0) {
-        let celdaAnterior = document.getElementsByTagName('td')[indicesConNumero[indiceActual]];
-        celdaAnterior.classList.add('tomado');
-      }
-      if (indiceActual + 1 < indicesConNumero.length) {
-        let siguienteIndice = indicesConNumero[indiceActual];
-        let siguienteCelda = document.getElementsByTagName('td')[siguienteIndice];
-        siguienteCelda.classList.add('resaltado-siguiente');
-      }
-    } else {
-      celda.classList.add('tomado');
-    }
-
-    indiceActual++;
-    if (indiceActual >= indicesConNumero.length) {
-      indiceActual = 0;
-    }
-  }
-} */
+    
+      
+      
+      btnEvent()
