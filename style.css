@@ -154,3 +154,46 @@ body{
     color: rgb(249, 125, 125);
     text-shadow: 3px 5px  5px rgb(0, 0, 0); ;
 }
+
+.mensajeUsuarioError{
+    border: solid rgb(190, 63, 63);
+    border-radius: 20%;
+    margin: 10% 0px 0 400px;
+    text-align: center;
+    font-family: cursive;
+    font-weight: bold;
+    display: inline-block;
+    padding: 3%;
+    background-color: rgba(0, 0, 0, 0.8); 
+    font-size: 20px ;
+    box-shadow: 0 0.1rem 0.6rem rgba(0, 0, 0, 0.8);
+    color: rgb(249, 125, 125);
+    text-shadow: 3px 5px  5px rgb(0, 0, 0);
+}
+
+.btnRecargar{
+    text-align: center;
+    margin: 2% 0px 0 580px;
+    border: none;
+    border-radius: 30%;
+    padding: 1%;
+    text-shadow: 3px 5px  5px rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.8); 
+    color: rgb(249, 125, 125);
+ }
+
+ .btnRecargar:hover{
+    box-shadow: 0 0.1rem 0.6rem rgba(255, 252, 252, 0.8);
+    cursor: pointer;
+    color:rgba(255, 252, 252, 0.8) ;
+ }
+
+.tomado {
+    background-color: #c6ebc9;
+  }
+
+  .resaltado-siguiente{
+        background-color: yellow
+
+  }
+  
