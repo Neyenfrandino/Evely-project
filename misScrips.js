@@ -3,7 +3,9 @@ function buscarPorId(elementoId){
     return elementoDocumento;
 }
 
-function buscadorDeFecha(){
+
+
+function buscadorDeFecha(mensajeUsuario){
 
     //Aqui extraemos la fecha que ingresa el usuario y la transformamos en el formato que deseado, para asi poder hacer la validacion...
     let inputTextFecha = buscarPorId('cajaInput');
@@ -21,11 +23,12 @@ function buscadorDeFecha(){
         //Aqui validamos que la fecha del inicio del tratamiento no sea una fecha del futuro... 
         let fechaFormateada = fecha.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
         let fechaTitulo = document.createElement('h2');
-        fechaTitulo.textContent = mensajeMostrarUsuario + fechaFormateada + ' debe tomar el comprimido que indica la tableta en amarillo';
+        let mensaje = mensajeMostrarUsuario + fechaFormateada + mensajeUsuario;
+        fechaTitulo.textContent = mensaje;
         fechaTitulo.classList.add('mensajeUsuario');
         calendarioContainer.appendChild(fechaTitulo);
-
-  } else {
+        
+  }else {
 
         //Aqui creamos el elemento donde nos muestra el error del usuario al ingresar mal la fecha...
         let fechaTitulo = document.createElement('h2');
@@ -63,11 +66,21 @@ function btnEvent() {
       if (nombreInput.value.trim() !== '') {
         if (elementInput.value.trim() !== '') {
 
-          buscadorDeFecha();
+          buscadorDeFecha(' debe tomar el comprimido que indica la tableta en amarillo');
   
           if (nombreInput.value.trim() && elementInput.value.trim()) {
             verificacionCampos();
             validacionFechaATomarComprimido(elementInput.value);
+
+            let btnRecargarPag = document.createElement('button');
+            btnRecargarPag.textContent = 'Recargar página';
+            btnRecargarPag.className = 'btnRecargar';
+            btnRecargarPag.id = 'btnRecargar';
+            calendarioContainer.appendChild(btnRecargarPag);
+
+        btnRecargarPag.addEventListener('click', function(){
+          location.reload();
+        })
           }
         } else {
           alert('Por favor, ingresa la fecha de inicio del tratamiento.');
@@ -160,8 +173,54 @@ function obtenerIndicesConNumero() {
       
         return indices;
       }
-      
+
+   function btnFiltrarHasta(){
+    let btnFiltrar = buscarPorId('btnFiltrarHasta');
+
+    btnFiltrar.addEventListener('click', function(){
+
+      buscadorDeFecha(' Mensaje nuevo');
     
+      let miArray = [
+        document.getElementById('labelText'),
+        document.getElementById('nombreInput'),
+        document.getElementById('btnFiltarNombre'),
+        document.getElementById('cajaInput'),
+        document.getElementById('filtrarNombre')
+      ];
+    
+      for (let element of miArray) {
+        element.remove();
+      }
+
+      let nuevoInputFiltarHasta = document.createElement('input');
+      nuevoInputFiltarHasta.classList.add('cajaInputFiltrarHasta');
+      let elementoContenedor = buscarPorId('conteiner');
+      elementoContenedor.appendChild(nuevoInputFiltarHasta);
+      nuevoInputFiltarHasta.type = 'Date';
+
+      let nuevoBtnFiltarHasta = document.createElement('button');
+      nuevoBtnFiltarHasta.classList.add('btnFiltrarnuevo');
+      elementoContenedor.appendChild(nuevoBtnFiltarHasta);
+      nuevoBtnFiltarHasta.textContent = 'Filtrar Hasta... ';
       
+
+    })
+   
+
+    
+  }
+
+
+
       
-      btnEvent()
+ btnEvent()
+ 
+
+
+
+/* } else if(mensaje){
+  btnFiltrarHasta();
+  mensaje.remove
+}
+ */

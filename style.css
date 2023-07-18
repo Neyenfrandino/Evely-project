@@ -39,7 +39,7 @@ body{
     padding: 1.2% 5%;
     box-shadow: 0 0.1rem 0.6rem rgba(255, 0, 0, 0.8);
     background-color: rgba(234, 10, 10, 0.5);
-    margin: 7% 10% 20% 0%;
+    margin: 5% 10% 20% 3%;
     display: none;
 }
 
@@ -65,13 +65,13 @@ body{
 
 .filtrarNombre {
     display: inline-block;
-    margin-top: 5%;
-    margin-left: 30%;
+    margin-top: 3%;
+    margin-left: 20%;
     border: solid black;
     border-radius: 20px;
     text-align: center;
-    width: 30%;
-    height: 160px;
+    width: 50%;
+    height: 230px;
     padding: 3.5% ;
     background-color:rgba(0, 0, 0, 0.5);
 } 
@@ -81,7 +81,7 @@ body{
 }
 
 .cajaInput{
-    margin: 1%;
+    margin: 0%;
     background-color: rgba(234, 10, 10, 0.8); 
     border: none;
     width: 70%;
@@ -91,10 +91,11 @@ body{
     font-weight: bold;
     padding-right: 4%;
     cursor: pointer;
+    margin-left: 0%;
 }
 
 .nombreInput{
-    margin: 5%;
+    margin: 5% ;
     background-color: rgba(234, 10, 10, 0.8); 
     border: none;
     width: 70%;
@@ -102,21 +103,45 @@ body{
     border-radius: 15%;
     text-align: center;
     font-weight: bold;
+    margin-left: 5%;
 }
 
 .btnFiltarNombre{
+    background-color: rgba(0, 0 , 0,  0.0) ;
+    color: wheat;
+    font-weight: bolder;
+    font-family: cursive;
+    display: block;
+    cursor: pointer;
+    border: solid;
+    border-radius: 20px;
+    text-align: center;
+    padding: 7px;
+    margin: 3% 55%;
+ 
+}
+
+.btnFiltarNombre:hover{
+    color: black;
+}
+
+.filtrarHasta{
     background-color: rgba(0, 0 , 0,  0.0) ;
     border: none;
     color: wheat;
     font-weight: bolder;
     font-family: cursive;
-    position: absolute;
-    left: 60%;
-    top: 61.5%;
+    display: block;
     cursor: pointer;
+    border: solid;
+    border-radius: 20px;
+    text-align: center;
+    padding: 7px;
+    margin: -8.8% 30%;
+ 
 }
 
-.btnFiltarNombre:hover{
+.filtrarHasta:hover{
     color: black;
 }
 
@@ -139,14 +164,14 @@ body{
 .mensajeUsuario{
     border: solid black;
     border-radius: 20%;
-    margin:12%;
+    margin:20%;
+    margin-right: 0%;
+    margin-top: 3%;
     text-align: center;
     font-family: cursive;
     font-weight: bold;
     display: inline-block;
     padding: 10%;
-    margin-top: -10%;
-    align-items: center;
     background-color: rgba(0, 0, 0, 0.5); 
     font-size: 20px ;
     box-shadow: 0 0.1rem 0.6rem rgba(0, 0, 0, 0.8);
@@ -205,3 +230,37 @@ body{
     text-shadow: 3px 0px  5px hsl(0, 0%, 100%);
 }
 
+.cajaInputFiltrarHasta{
+    margin: 0% 0% 10% 05%;
+    background-color: rgba(234, 10, 10, 0.8); 
+    border: none;
+    width: 20%;
+    height: 50px;
+    border-radius: 15%;
+    text-align: center;
+    font-weight: bold;
+    padding-right: 4%;
+    cursor: pointer;
+    display: block;
+    
+    
+}
+
+.btnFiltrarnuevo{
+    background-color: rgba(0, 0 , 0,  0.0) ;
+    color: wheat;
+    font-weight: bolder;
+    font-family: cursive;
+    display: inline-block;
+    cursor: pointer;
+    border: solid;
+    border-radius: 20px;
+    text-align: center;
+    padding: 7px;
+    margin: 0% 0% 0% ; 
+    margin-left: -220px;
+}
+
+.btnFiltrarnuevo:hover{
+    color: black;
+}
