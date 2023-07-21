@@ -3,32 +3,35 @@ function buscarPorId(elementoId){
     return elementoDocumento;
 }
 
-function buscadorDeFecha(){
-
-    //Aqui extraemos la fecha que ingresa el usuario y la transformamos en el formato que deseado, para asi poder hacer la validacion...
-  
-    let elementInputText = buscarPorId('nombreInput')
+function valorExtraerInput(elementoExtraelValor){
+  let elementInputText = buscarPorId(elementoExtraelValor)
     let valorInput = elementInputText.value
-    let mensajeMostrarUsuario = '"'+ valorInput +'"' + ' usted unicio el tratamiento el dia ';
+    return valorInput;
+}
 
-    let fechaActual, fecha, fechaFormateada;
-    [fechaActual, fecha, fechaFormateada] = buscadorDeFechas('cajaInput');
+function buscadorDeFecha(mensajeUsuario){
 
+  let fechaActual, fecha, fechaFormateada;
+  [fechaActual, fecha, fechaFormateada] = buscadorDeFechas('cajaInput');
+   
+  let mensajeMostrarUsuario = '"'+ valorExtraerInput('nombreInput') +'"' + ' usted unicio el tratamiento el dia ' + fechaFormateada + mensajeUsuario;
+
+  //Aqui extraemos la fecha que ingresa el usuario y la transformamos en el formato que deseado, para asi poder hacer la validacion...
 
   if (fecha < fechaActual) {
 
         //Aqui validamos que la fecha del inicio del tratamiento no sea una fecha del futuro... 
-        crearElementosDinamicos('h2', mensajeMostrarUsuario + fechaFormateada, 'mensajeUsuario', 'calendarioContainer')
+        crearElementosDinamicos('h2', mensajeMostrarUsuario, 'mensajeUsuario', 'calendarioContainer');
+
   }else {
+        
+       // Aquí creamos el elemento donde nos muestra el error del usuario al ingresar mal la fecha...
+    crearElementosDinamicos('h2', '"' + valorExtraerInput('nombreInput') + '"' + ' La fecha ingresada no es correcta', 'mensajeUsuarioError', 'calendarioContainer');
 
-        //Aqui creamos el elemento donde nos muestra el error del usuario al ingresar mal la fecha...
-
-        crearElementosDinamicos('h2','"' + valorInput + '"' + ' La fecha ingresada no es correcta', 'mensajeUsuarioError', 'calendarioContainer')
-
-        //creamo el boton para recargar la pag para que se pueda volver a ingresar la fecha...
-        btnRecargarPag('button', 'Recargar página', 'btnRecargar', 'btnRecargar', 'calendarioContainer');
-
-        let tablaComprimidos = buscarPorId('tablaComprimidos');
+    // Creamos el botón para recargar la página para que se pueda volver a ingresar la fecha...
+    btnRecargarPag('button', 'Recargar página', 'btnRecargar', 'btnRecargar', calendarioContainer);
+    
+       let tablaComprimidos = buscarPorId('tablaComprimidos');
     if (tablaComprimidos) {
       tablaComprimidos.remove();
     }
@@ -41,7 +44,7 @@ function btnEvent() {
   //Aqui creamos el evento click del boton y agremos el calendario .
   let btnElemento = buscarPorId('btnFiltarNombre');
   let elementInput = buscarPorId('cajaInput');
-  const nombreInput = document.getElementById('nombreInput');
+  let nombreInput = document.getElementById('nombreInput');
   
   btnElemento.addEventListener('click', function() {
     
@@ -54,15 +57,8 @@ function btnEvent() {
           verificacionCampos();
           validacionFechaATomarComprimido(elementInput.value);
 
-          let btnRecargarPag = document.createElement('button');
-          btnRecargarPag.textContent = 'Recargar página';
-          btnRecargarPag.className = 'btnRecargar';
-          btnRecargarPag.id = 'btnRecargar';
-          calendarioContainer.appendChild(btnRecargarPag);
-
-      btnRecargarPag.addEventListener('click', function(){
-        location.reload();
-      })
+          btnRecargarPag('button', 'Recargar página', 'btnRecargar', 'btnRecargar', calendarioContainer);
+      
         }
       } else {
         alert('Por favor, ingresa la fecha de inicio del tratamiento.');
@@ -77,7 +73,7 @@ function btnEvent() {
 
 function verificacionCampos() {
 
-  //Aqui recorremos los elementos del div uno por uno con un loop for hacemos la verificacion de los campos que no esten incompletos..
+  //Aqui recorremos los elementos del div uno por uno con un loop for of hacemos la verificacion de los campos que no esten incompletos..
   let miArray = [
     document.getElementById('labelText'),
     document.getElementById('nombreInput'),
@@ -156,38 +152,55 @@ function obtenerIndicesConNumero() {
       return indices;
     }
 
+
+
  function btnFiltrarHasta(){
   let btnFiltrar = buscarPorId('btnFiltrarHasta');
 
   btnFiltrar.addEventListener('click', function(){
 
-    buscadorDeFecha(' Mensaje nuevo');
-  
+    buscadorDeFechas('cajaInput');
+
     let miArray = [
       document.getElementById('labelText'),
       document.getElementById('nombreInput'),
       document.getElementById('btnFiltarNombre'),
+      document.getElementById('btnFiltrarHasta'),
       document.getElementById('cajaInput'),
-      document.getElementById('filtrarNombre')
+      /* document.getElementById('filtrarNombre') */
     ];
   
     for (let element of miArray) {
-      element.remove();
+      element.style.display = 'none';
     }
+  
 
-    let nuevoInputFiltarHasta = document.createElement('input');
-    nuevoInputFiltarHasta.classList.add('cajaInputFiltrarHasta');
-    let elementoContenedor = buscarPorId('conteiner');
-    elementoContenedor.appendChild(nuevoInputFiltarHasta);
-    nuevoInputFiltarHasta.type = 'Date';
+    let fechaActual, fecha, fechaFormateada;
+   [fechaActual, fecha, fechaFormateada] = buscadorDeFechas('cajaInput');
 
-    let nuevoBtnFiltarHasta = document.createElement('button');
-    nuevoBtnFiltarHasta.classList.add('btnFiltrarnuevo');
-    elementoContenedor.appendChild(nuevoBtnFiltarHasta);
-    nuevoBtnFiltarHasta.textContent = 'Filtrar Hasta... ';
-    
+   let mensajeUsuario = '"' + valorExtraerInput('nombreInput') + '"' + ' usted inicio el tratamiendo el dia ' + fechaFormateada + 
+   ', si desea saber que comprimido debio tomar en alguna fecha espesifica SOLO INGRESE LA FECHA DESEA Y APLIQUE AL BOTON FILTRAR HASTA ' 
 
+    crearElementosDinamicos('h2', mensajeUsuario , 'h2FiltrarHasta', 'filtrarNombre');
+
+    crearElementosDinamicos('input', '', 'cajaInputFiltrarHasta', 'filtrarNombre', 'date', 'InputValorFechaID')
+  
+    crearElementosDinamicos('button', 'Filtrar Hasta... ', 'btnFiltrarnuevo', 'filtrarNombre', 'button', 'btnDinamicoFiltrarHasta');
   })
+  
+    let btnCradoDinamicamente = buscarPorId('btnDinamicoFiltrarHasta');
+    let InputValorFechaID = buscarPorId('InputValorFechaID'); 
+
+    if(InputValorFechaID.value.trim() !== ''){
+      btnCradoDinamicamente.addEventListener('click', function(){
+        let valorEnVariable = valorExtraerInput('InputValorFechaID')
+        validacionFechaATomarComprimido(valorEnVariable)
+        console.log(validacionFechaATomarComprimido(valorEnVariable))
+    })
+  }
+    
+  
+ 
  
 
   
@@ -197,17 +210,32 @@ function obtenerIndicesConNumero() {
 
     
 btnEvent()
+btnFiltrarHasta()
 
 
 
 
-function crearElementosDinamicos(elemento, mensaje, claseCss, contenedorId ){
-  let fechaTitulo = document.createElement(elemento);
+
+function buscadorDeFechas(elementoId,){
+  let inputTextFecha = buscarPorId(elementoId);
+    let valorUsuarioFecha = inputTextFecha.value;
+
+    let fecha = new Date(valorUsuarioFecha  + 'T00:00:00')
+    let fechaActual = new Date();
+    let fechaFormateada = fecha.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    return[fechaActual, fecha, fechaFormateada]
+}
+
+function crearElementosDinamicos(elementoAcrear, mensaje, claseCss, contenedorId, type, nameId ){
+  let fechaTitulo = document.createElement(elementoAcrear);
         let mensajee = mensaje
         fechaTitulo.textContent = mensajee;
         fechaTitulo.classList.add(claseCss);
         let contenedorHijo = buscarPorId(contenedorId)
         contenedorHijo.appendChild(fechaTitulo);
+        fechaTitulo.id = nameId
+        fechaTitulo.type = type;
 }
 
 function btnRecargarPag(elemento, nombreBtn, className, nameId, contenedorId){
@@ -222,13 +250,4 @@ function btnRecargarPag(elemento, nombreBtn, className, nameId, contenedorId){
   })
 }
 
-function buscadorDeFechas(elementoId,){
-  let inputTextFecha = buscarPorId(elementoId);
-    let valorUsuarioFecha = inputTextFecha.value;
 
-    let fecha = new Date(valorUsuarioFecha  + 'T00:00:00')
-    let fechaActual = new Date();
-    let fechaFormateada = fecha.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
-
-    return[fechaActual, fecha, fechaFormateada]
-}

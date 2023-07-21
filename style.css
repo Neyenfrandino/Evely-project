@@ -182,7 +182,7 @@ body{
 .mensajeUsuarioError{
     border: solid rgb(190, 63, 63);
     border-radius: 20%;
-    margin: 10% 0px 0 400px;
+    margin: 5% 0px 0 380px;
     text-align: center;
     font-family: cursive;
     font-weight: bold;
@@ -197,7 +197,7 @@ body{
 
 .btnRecargar{
     text-align: center;
-    margin: 2% 0px 0 580px;
+    margin: 3% 0px 0 560px;
     border: none;
     border-radius: 30%;
     padding: 1%;
@@ -231,7 +231,7 @@ body{
 }
 
 .cajaInputFiltrarHasta{
-    margin: 0% 0% 10% 05%;
+    margin: 7% 0% 10% 05%;
     background-color: rgba(234, 10, 10, 0.8); 
     border: none;
     width: 20%;
@@ -241,9 +241,7 @@ body{
     font-weight: bold;
     padding-right: 4%;
     cursor: pointer;
-    display: block;
-    
-    
+    display: inline-block;
 }
 
 .btnFiltrarnuevo{
@@ -251,16 +249,40 @@ body{
     color: wheat;
     font-weight: bolder;
     font-family: cursive;
-    display: inline-block;
+    display: flex;
     cursor: pointer;
     border: solid;
     border-radius: 20px;
     text-align: center;
     padding: 7px;
-    margin: 0% 0% 0% ; 
-    margin-left: -220px;
+    margin: 0% 0% 10% 39% ; 
 }
 
 .btnFiltrarnuevo:hover{
     color: black;
+}
+
+.h2FiltrarHasta{
+    margin:0%;
+    text-align: center;
+    font-family: cursive;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 18px ;
+    color: wheat;
+    text-shadow: 3px 5px  5px rgb(0, 0, 0); ;
+}
+
+.cajaInputFiltrarHasta{
+    margin: 5%;
+    background-color: rgba(234, 10, 10, 0.8); 
+    border: none;
+    width: 70%;
+    height: 20%;
+    border-radius: 15%;
+    text-align: center;
+    font-weight: bold;
+    padding-right: 4%;
+    cursor: pointer;
+    margin-left: 5%;
 }
