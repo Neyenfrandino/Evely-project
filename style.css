@@ -39,7 +39,7 @@ body{
     padding: 1.2% 5%;
     box-shadow: 0 0.1rem 0.6rem rgba(255, 0, 0, 0.8);
     background-color: rgba(234, 10, 10, 0.5);
-    margin: 5% 10% 20% 3%;
+    margin: 5% 10% 10% 3%;
     display: none;
 }
 
@@ -65,7 +65,7 @@ body{
 
 .filtrarNombre {
     display: inline-block;
-    margin-top: 3%;
+    margin-top: 0%;
     margin-left: 20%;
     border: solid black;
     border-radius: 20px;
@@ -166,7 +166,7 @@ body{
     border-radius: 20%;
     margin:20%;
     margin-right: 0%;
-    margin-top: 3%;
+    margin-top: 14%;
     text-align: center;
     font-family: cursive;
     font-weight: bold;
@@ -182,7 +182,7 @@ body{
 .mensajeUsuarioError{
     border: solid rgb(190, 63, 63);
     border-radius: 20%;
-    margin: 5% 0px 0 380px;
+    margin: 5% 0px 0 350px;
     text-align: center;
     font-family: cursive;
     font-weight: bold;
@@ -286,3 +286,23 @@ body{
     cursor: pointer;
     margin-left: 5%;
 }
+
+.btnRecargarFinal{
+    text-align: center;
+    margin: 11% 0px 0;
+    border: none;
+    border-radius: 30%;
+    padding: 5%;
+    text-shadow: 3px 5px  5px rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.8); 
+    color: rgb(249, 125, 125);
+}
+
+.btnRecargarFinal:hover{
+    box-shadow: 0 0.1rem 0.6rem rgba(255, 252, 252, 0.8);
+    cursor: pointer;
+    color:rgba(255, 252, 252, 0.8) ;
+}
+
+
+

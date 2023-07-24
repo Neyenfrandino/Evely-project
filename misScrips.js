@@ -55,7 +55,7 @@ function btnEvent() {
 
         if (nombreInput.value.trim() && elementInput.value.trim()) {
           verificacionCampos();
-          validacionFechaATomarComprimido(elementInput.value);
+          validacionFechaATomarComprimido(elementInput.value, new Date());
 
           btnRecargarPag('button', 'Recargar página', 'btnRecargar', 'btnRecargar', calendarioContainer);
       
@@ -83,7 +83,7 @@ function verificacionCampos() {
   ];
 
   for (let element of miArray) {
-    element.remove();
+    element.style.display = 'none';
   }
   if(miArray != null){
       let miTabla = buscarPorId('tablaComprimidos');
@@ -91,12 +91,12 @@ function verificacionCampos() {
   }  
 }     
    
-function validacionFechaATomarComprimido(elementoinputUsuario) {
+function validacionFechaATomarComprimido(elementoinputUsuario, variableFechaDeseada) {
   let fechaValorUsuario = elementoinputUsuario;
   let fechaFormateada = new Date(fechaValorUsuario);
   let fechaActual = new Date();
 
-  let diferenciaTiempo = fechaFormateada.getTime() - fechaActual.getTime();
+  let diferenciaTiempo = fechaFormateada.getTime() - variableFechaDeseada.getTime();
   let diferenciaDias = Math.ceil(diferenciaTiempo / (1000 * 60 * 60 * 24));
   let diferenciaDiasValorAbsoluto = Math.abs(diferenciaDias);
 
@@ -153,57 +153,81 @@ function obtenerIndicesConNumero() {
     }
 
 
-
  function btnFiltrarHasta(){
   let btnFiltrar = buscarPorId('btnFiltrarHasta');
+  
+ 
 
   btnFiltrar.addEventListener('click', function(){
+    let elementInput = buscarPorId('cajaInput');
+    let nombreInput = document.getElementById('nombreInput');
 
-    buscadorDeFechas('cajaInput');
-
-    let miArray = [
-      document.getElementById('labelText'),
-      document.getElementById('nombreInput'),
-      document.getElementById('btnFiltarNombre'),
-      document.getElementById('btnFiltrarHasta'),
-      document.getElementById('cajaInput'),
-      /* document.getElementById('filtrarNombre') */
-    ];
-  
-    for (let element of miArray) {
-      element.style.display = 'none';
-    }
-  
-
-    let fechaActual, fecha, fechaFormateada;
-   [fechaActual, fecha, fechaFormateada] = buscadorDeFechas('cajaInput');
-
-   let mensajeUsuario = '"' + valorExtraerInput('nombreInput') + '"' + ' usted inicio el tratamiendo el dia ' + fechaFormateada + 
-   ', si desea saber que comprimido debio tomar en alguna fecha espesifica SOLO INGRESE LA FECHA DESEA Y APLIQUE AL BOTON FILTRAR HASTA ' 
-
-    crearElementosDinamicos('h2', mensajeUsuario , 'h2FiltrarHasta', 'filtrarNombre');
-
-    crearElementosDinamicos('input', '', 'cajaInputFiltrarHasta', 'filtrarNombre', 'date', 'InputValorFechaID')
-  
-    crearElementosDinamicos('button', 'Filtrar Hasta... ', 'btnFiltrarnuevo', 'filtrarNombre', 'button', 'btnDinamicoFiltrarHasta');
-  })
-  
-    let btnCradoDinamicamente = buscarPorId('btnDinamicoFiltrarHasta');
-    let InputValorFechaID = buscarPorId('InputValorFechaID'); 
-
-    if(InputValorFechaID.value.trim() !== ''){
-      btnCradoDinamicamente.addEventListener('click', function(){
-        let valorEnVariable = valorExtraerInput('InputValorFechaID')
-        validacionFechaATomarComprimido(valorEnVariable)
-        console.log(validacionFechaATomarComprimido(valorEnVariable))
-    })
-  }
+    if (nombreInput.value.trim() !== '') {
+      if (elementInput.value.trim() !== '') {
+      let miArray = [
+        document.getElementById('labelText'),
+        document.getElementById('nombreInput'),
+        document.getElementById('btnFiltarNombre'),
+        document.getElementById('btnFiltrarHasta'),
+        document.getElementById('cajaInput'),
+        /* document.getElementById('filtrarNombre') */
+      ];
+    
+      for (let element of miArray) {
+        element.style.display = 'none';
+      }
     
   
- 
- 
-
+     let mensajeUsuario = '"' + valorExtraerInput('nombreInput') + '"' + ' usted inicio el tratamiendo el dia ' + buscadorDeFechas('cajaInput')[2] + 
+     ', si desea saber que comprimido debio tomar en alguna fecha espesifica SOLO INGRESE LA FECHA DESEA Y APLIQUE AL BOTON FILTRAR HASTA ' 
   
+     crearElementosDinamicos('h2', mensajeUsuario , 'h2FiltrarHasta', 'filtrarNombre', '', 'h2FiltrarHastaId');
+  
+      crearElementosDinamicos('input', '', 'cajaInputFiltrarHasta', 'filtrarNombre', 'date', 'InputValorFechaID')
+    
+      crearElementosDinamicos('button', 'Filtrar Hasta... ', 'btnFiltrarnuevo', 'filtrarNombre', 'button', 'btnDinamicoFiltrarHasta');
+  
+      let btnCradoDinamicamente = buscarPorId('btnDinamicoFiltrarHasta');
+  
+      btnCradoDinamicamente.addEventListener('click', function() {
+  
+        if(InputValorFechaID.value.trim() !== ''){
+          let fechaSecundaria = buscarPorId('InputValorFechaID');
+          let valorFechaSecundariaUsuario = new Date(fechaSecundaria.value + 'T00:00:00');
+          
+          let fechaAUsuar = buscadorDeFechas('cajaInput')[1];
+  
+          validacionFechaATomarComprimido(fechaAUsuar, valorFechaSecundariaUsuario);
+          verificacionCampos()
+          let contenedor = buscarPorId('filtrarNombre');
+          contenedor.style.display = 'block';
+  
+          let miArray = [
+            document.getElementById('InputValorFechaID'),
+            document.getElementById('btnDinamicoFiltrarHasta'),
+          ];
+        
+          for (let element of miArray) {
+            element.style.display = 'none';
+          }
+  
+          let mensajeFinal = 'El inicio de su tratamiento fue el dia ' + buscadorDeFechas('cajaInput')[2] + ', usted el dia ' + valorFechaSecundariaUsuario.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }) + ' deberia aver tomado el comprimido que indica la tableta en amarillo' 
+          let mensajeAnterior = buscarPorId('h2FiltrarHastaId');
+          mensajeAnterior.textContent = mensajeFinal
+          btnRecargarPag('button', 'Recargar página', 'btnRecargarFinal', 'btnRecargar', filtrarNombre);
+  
+  
+        }
+   
+    }) 
+    } else {
+      alert('Por favor, ingresa la fecha de inicio del tratamiento.');
+    }
+  } else {
+    alert('Por favor, ingresa tu nombre primero.');
+  } 
+});
+
 }
 
 
@@ -216,7 +240,7 @@ btnFiltrarHasta()
 
 
 
-function buscadorDeFechas(elementoId,){
+function buscadorDeFechas(elementoId){
   let inputTextFecha = buscarPorId(elementoId);
     let valorUsuarioFecha = inputTextFecha.value;
 
@@ -227,6 +251,8 @@ function buscadorDeFechas(elementoId,){
     return[fechaActual, fecha, fechaFormateada]
 }
 
+
+crearElementosDinamicos('h2', mensajeUsuario , 'h2FiltrarHasta', 'filtrarNombre', '', 'h2FiltrarHastaId');
 function crearElementosDinamicos(elementoAcrear, mensaje, claseCss, contenedorId, type, nameId ){
   let fechaTitulo = document.createElement(elementoAcrear);
         let mensajee = mensaje
@@ -249,5 +275,4 @@ function btnRecargarPag(elemento, nombreBtn, className, nameId, contenedorId){
     location.reload();
   })
 }
-
 
