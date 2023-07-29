@@ -10,69 +10,55 @@ function valorExtraerInput(elementoExtraelValor){
 }
 
 function buscadorDeFecha(mensajeUsuario){
-
   let fechaActual, fecha, fechaFormateada;
   [fechaActual, fecha, fechaFormateada] = buscadorDeFechas('cajaInput');
-   
-  let mensajeMostrarUsuario = '"'+ valorExtraerInput('nombreInput') +'"' + ' usted unicio el tratamiento el dia ' + fechaFormateada + mensajeUsuario;
+  let mensajeMostrarUsuario = '"'+ valorExtraerInput('nombreInput') +'"' + ' usted inicio el tratamiento el dia ' + 
+                              fechaFormateada + mensajeUsuario;
 
   //Aqui extraemos la fecha que ingresa el usuario y la transformamos en el formato que deseado, para asi poder hacer la validacion...
-
   if (fecha < fechaActual) {
-
         //Aqui validamos que la fecha del inicio del tratamiento no sea una fecha del futuro... 
         crearElementosDinamicos('h2', mensajeMostrarUsuario, 'mensajeUsuario', 'calendarioContainer');
-
-  }else {
-        
+  } else {
        // Aquí creamos el elemento donde nos muestra el error del usuario al ingresar mal la fecha...
     crearElementosDinamicos('h2', '"' + valorExtraerInput('nombreInput') + '"' + ' La fecha ingresada no es correcta', 'mensajeUsuarioError', 'calendarioContainer');
 
     // Creamos el botón para recargar la página para que se pueda volver a ingresar la fecha...
     btnRecargarPag('button', 'Recargar página', 'btnRecargar', 'btnRecargar', calendarioContainer);
     
-       let tablaComprimidos = buscarPorId('tablaComprimidos');
+    let tablaComprimidos = buscarPorId('tablaComprimidos');
     if (tablaComprimidos) {
       tablaComprimidos.remove();
     }
   }
 }
 
-
 function btnEvent() {
-
   //Aqui creamos el evento click del boton y agremos el calendario .
   let btnElemento = buscarPorId('btnFiltarNombre');
   let elementInput = buscarPorId('cajaInput');
   let nombreInput = document.getElementById('nombreInput');
   
   btnElemento.addEventListener('click', function() {
-    
     if (nombreInput.value.trim() !== '') {
       if (elementInput.value.trim() !== '') {
-
         buscadorDeFecha(' debe tomar el comprimido que indica la tableta en amarillo');
 
         if (nombreInput.value.trim() && elementInput.value.trim()) {
           verificacionCampos();
           validacionFechaATomarComprimido(elementInput.value, new Date());
-
           btnRecargarPag('button', 'Recargar página', 'btnRecargar', 'btnRecargar', calendarioContainer);
-      
         }
       } else {
         alert('Por favor, ingresa la fecha de inicio del tratamiento.');
       }
     } else {
       alert('Por favor, ingresa tu nombre primero.');
-    } 
-    
-    
+    }
 });
 }
 
 function verificacionCampos() {
-
   //Aqui recorremos los elementos del div uno por uno con un loop for of hacemos la verificacion de los campos que no esten incompletos..
   let miArray = [
     document.getElementById('labelText'),
@@ -94,7 +80,6 @@ function verificacionCampos() {
 function validacionFechaATomarComprimido(elementoinputUsuario, variableFechaDeseada) {
   let fechaValorUsuario = elementoinputUsuario;
   let fechaFormateada = new Date(fechaValorUsuario);
-  let fechaActual = new Date();
 
   let diferenciaTiempo = fechaFormateada.getTime() - variableFechaDeseada.getTime();
   let diferenciaDias = Math.ceil(diferenciaTiempo / (1000 * 60 * 60 * 24));
@@ -148,15 +133,12 @@ function obtenerIndicesConNumero() {
           }
         }
       }
-    
       return indices;
     }
 
 
- function btnFiltrarHasta(){
+function btnFiltrarHasta(){
   let btnFiltrar = buscarPorId('btnFiltrarHasta');
-  
- 
 
   btnFiltrar.addEventListener('click', function(){
     let elementInput = buscarPorId('cajaInput');
@@ -169,59 +151,53 @@ function obtenerIndicesConNumero() {
         document.getElementById('nombreInput'),
         document.getElementById('btnFiltarNombre'),
         document.getElementById('btnFiltrarHasta'),
-        document.getElementById('cajaInput'),
-        /* document.getElementById('filtrarNombre') */
+        document.getElementById('cajaInput')
       ];
     
       for (let element of miArray) {
         element.style.display = 'none';
       }
-    
   
-     let mensajeUsuario = '"' + valorExtraerInput('nombreInput') + '"' + ' usted inicio el tratamiendo el dia ' + buscadorDeFechas('cajaInput')[2] + 
-     ', si desea saber que comprimido debio tomar en alguna fecha espesifica SOLO INGRESE LA FECHA DESEA Y APLIQUE AL BOTON FILTRAR HASTA ' 
+      let mensajeUsuario = '"' + valorExtraerInput('nombreInput') + '"' + ' usted inicio el tratamiendo el dia ' 
+                           + buscadorDeFechas('cajaInput')[2] 
+                           + '. Si desea saber que comprimido debio tomar en alguna fecha específica, SOLO INGRESE LA FECHA QUE DESEA Y APLIQUE AL BOTON FILTRAR HASTA ' 
   
-     crearElementosDinamicos('h2', mensajeUsuario , 'h2FiltrarHasta', 'filtrarNombre', '', 'h2FiltrarHastaId');
-  
-      crearElementosDinamicos('input', '', 'cajaInputFiltrarHasta', 'filtrarNombre', 'date', 'InputValorFechaID')
-    
+      crearElementosDinamicos('h2', mensajeUsuario , 'h2FiltrarHasta', 'filtrarNombre', '', 'h2FiltrarHastaId');
+      crearElementosDinamicos('input', '', 'cajaInputFiltrarHasta', 'filtrarNombre', 'date', 'InputValorFechaID');
       crearElementosDinamicos('button', 'Filtrar Hasta... ', 'btnFiltrarnuevo', 'filtrarNombre', 'button', 'btnDinamicoFiltrarHasta');
   
       let btnCradoDinamicamente = buscarPorId('btnDinamicoFiltrarHasta');
-  
       btnCradoDinamicamente.addEventListener('click', function() {
   
         if(InputValorFechaID.value.trim() !== ''){
           let fechaSecundaria = buscarPorId('InputValorFechaID');
-          let valorFechaSecundariaUsuario = new Date(fechaSecundaria.value + 'T00:00:00');
-          
+          let valorFechaSecundariaUsuario = new Date(fechaSecundaria.value + 'T00:00:00');  
           let fechaAUsuar = buscadorDeFechas('cajaInput')[1];
-  
+    
           validacionFechaATomarComprimido(fechaAUsuar, valorFechaSecundariaUsuario);
           verificacionCampos()
           let contenedor = buscarPorId('filtrarNombre');
           contenedor.style.display = 'block';
-  
+    
           let miArray = [
             document.getElementById('InputValorFechaID'),
-            document.getElementById('btnDinamicoFiltrarHasta'),
+            document.getElementById('btnDinamicoFiltrarHasta')
           ];
-        
+          
           for (let element of miArray) {
             element.style.display = 'none';
           }
-  
-          let mensajeFinal = 'El inicio de su tratamiento fue el dia ' + buscadorDeFechas('cajaInput')[2] + ', usted el dia ' + valorFechaSecundariaUsuario.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }) + ' deberia aver tomado el comprimido que indica la tableta en amarillo' 
+          
+          let mensajeFinal = 'El inicio de su tratamiento fue el dia ' + buscadorDeFechas('cajaInput')[2] + '. Usted el dia ' + valorFechaSecundariaUsuario.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }) + ' deberia haber tomado el comprimido que indica la tableta en amarillo' 
           let mensajeAnterior = buscarPorId('h2FiltrarHastaId');
           mensajeAnterior.textContent = mensajeFinal
           btnRecargarPag('button', 'Recargar página', 'btnRecargarFinal', 'btnRecargar', filtrarNombre);
-  
-  
         }
-   
-    }) 
+      }) 
     } else {
       alert('Por favor, ingresa la fecha de inicio del tratamiento.');
+      let elementoInput = buscarPorId('nombreInput');
+      elementInput.classList.add('iconoValidacion')
     }
   } else {
     alert('Por favor, ingresa tu nombre primero.');
