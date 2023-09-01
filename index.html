@@ -3,11 +3,10 @@
 <head>
     <title>Calendario de Nosotras</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
     <link rel="icon" href="icon/tablets-solid.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-</head>
+<!--     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ --></head>
 <body>
     <h1 class="tituloPrincipal">Calendario para Nosotras...</h1>
     <p class="descripcion">Esta es una aplicacion que nos permite recordar segun la Fecha de incio del tratamiento, <br>
@@ -17,16 +16,31 @@
     
     <div class="filtrarNombre" id="filtrarNombre">
         <label for="cajaInput" class="labelText" id="labelText">Dime tu nombre por favor, y selecciona la fecha de inicio del tratamiento en el Calendario, y te ayudare...</label>
-        <input type="text" id="nombreInput" class="nombreInput" placeholder="Ingresa tu nombre">
-        <i class="iconoValidacion fa-solid fa-triangle-exclamation" style="color: #183153;"></i>
 
-     
-        <input type="date" id="cajaInput" class="cajaInput">
+        <!-- caja input para ingresar el nombre del usuario -->
+        <div class="validacion" id="validacion">
+            <input type="text" id="nombreInput" class="nombreInput" placeholder="Ingresa tu nombre">
+            <i class="iconoValidacion fa-solid fa-triangle-exclamation" style="color: #183153;" id="iconoValidacion"></i>
+        </div>
+        <p class="formulario__input-error" id="formulario__input-error">Por favor, ingresa tu nombre primero.</p>
+
+        <!-- caja input para ingresar fecha de inicio de tratamiento -->
+        <div class="validacion" id="validacioon">
+            <input type="date" id="cajaInput" class="cajaInput" value="05/12/2022">
+            <i class="iconoValidacion fa-solid fa-triangle-exclamation" id="iconoValidacioon" style="color: #183153;"></i>
+        </div>
+        <p class="formulario__input-error" id="formulario__input-Error">Por favor, ingresa la fecha de inicio del tratamiento.</p>
+
+        <!-- grupo botones-->
         <button class="btnFiltarNombre" id="btnFiltarNombre">Buscar...</button>
         <button class="filtrarHasta" id="btnFiltrarHasta"  title="¡Filtrar HASTA. Puedes saber que comprimido se debia tomar en 
         alguna fecha determinada dentro de la fecha de inicio y la fecha actual...!">Filtrar Hasta</button>
         
         <div id="nuevoInputFiltrarHasta"></div>
+
+        <div class="formulario__mensaje">
+            <p id="formulario__mensaje"><i class="iconoValidacionn fa-solid fa-triangle-exclamation" style="color: #183153;"></i> <b>Error:</b> Por favor rellene el formulario correctamente...</p>
+        </div>
     </div>
 
     <div id="calendarioContainer"></div>
@@ -101,6 +115,6 @@
 </div>
 
     <script src="misScrips.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.js"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
 </html>
