@@ -96,7 +96,7 @@ function validacionFechaATomarComprimido(elementoinputUsuario, variableFechaDese
   // Convertir la fecha al formato correcto de Colombia
   fechaFormateada.toLocaleString('es-CO', { timeZone: zonaHorariaColombia });
   console.log(fechaFormateada + ' - esta es la fecha del usuario en Colombia');
-  const fechaDeseada = new Date(variableFechaDeseada);
+  let fechaDeseada = new Date(variableFechaDeseada);
   fechaDeseada.setHours(0, 0, 0, 0);
 
   let diferenciaTiempo = fechaFormateada.getTime() - fechaDeseada.getTime();
@@ -224,11 +224,25 @@ function btnFiltrarHasta(){
 
 }
 
+function setTreatmentBeginDate(){
+	let beginDate = new Date('2022-12-05');
+
+	let year = beginDate.getFullYear().toString();
+	let month = (beginDate.getMonth() + 1).toString().padStart(2, '0');
+	let day = (beginDate.getDate()+1).toString().padStart(2, '0');
+
+	let finalDate = `${year}-${month}-${day}`;
+	document.getElementById('cajaInput').value = finalDate;
+}
+
+
+
 
 
     
 btnEvent()
 btnFiltrarHasta()
+setTreatmentBeginDate()
 
 
 
